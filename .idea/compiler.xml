@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud-zuul-10010" />
+        <module name="springcloud-upload" />
+        <module name="springcloud-user" />
+        <module name="springcloud-shopping-items-service" />
+        <module name="springcloud-order-Dao" />
+        <module name="springcloud-eureka-7001" />
+        <module name="springcloud-common" />
+        <module name="springcloud-shopping-order-service" />
+        <module name="springcloud-shopping-items-Dao" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springcloud-cart" target="1.8" />
+      <module name="springcloud-items-Dao" target="1.8" />
+      <module name="springcloud-order-service" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

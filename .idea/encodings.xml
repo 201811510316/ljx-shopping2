@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/springcloud-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-eureka-7001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-eureka-7001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-order/springcloud-order-Dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-order/springcloud-order-Dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-order/springcloud-shopping-order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-order/springcloud-shopping-order-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-shopping-items/springcloud-shopping-items-Dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-shopping-items/springcloud-shopping-items-Dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-shopping-items/springcloud-shopping-items-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-shopping-items/springcloud-shopping-items-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-upload/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-upload/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-user/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-zuul-10010/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-zuul-10010/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
