@@ -35,29 +35,4 @@ public class goodsImgController {
         return ResponseEntity.ok(goodsImg);
     }
 
-    //保存商品修改信息
-    @PutMapping("/goods/goodsImg/update")
-    public ResponseEntity<Void> queryByUpdate(@RequestBody goodsImg goodsImg){
-        try {
-            goodsImgService.save(goodsImg);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    //添加商品图片详情
-    @PostMapping("/goods/add")
-    public ResponseEntity<Void> queryByAdd(@RequestBody goodsImg goodsImg){
-        try {
-            goodsImgService.goodsImgAdd(goodsImg);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
 }

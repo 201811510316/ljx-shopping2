@@ -55,15 +55,4 @@ public class goodsImgServiceImpl implements goodsImgService {
         return goodsImg;
     }
 
-    //保存商品图片修改的信息
-    @Override
-    public void save(goodsImg goodsImg) {
-        goodsImgMapper.updateByPrimaryKeySelective(goodsImg);
-    }
-
-    //保存添加图片
-    @Override
-    public void goodsImgAdd(goodsImg goodsImg) {
-        goodsImgMapper.insert(goodsImg);
-    }
 }

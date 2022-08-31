@@ -3,6 +3,7 @@ package com.ljx.springcloud.service.Impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.ljx.springcloud.mapper.goodsClassificationMapper;
+import com.ljx.springcloud.mapper.goodsImgMapper;
 import com.ljx.springcloud.mapper.goodsMapper;
 import com.ljx.springcloud.pojo.goods;
 import com.ljx.springcloud.pojo.goodsClassification;
@@ -12,6 +13,7 @@ import com.ljx.springcloud.pojo.goodsFenLei;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public class goodsServiceImpl implements goodsService {
 
     @Autowired
     goodsMapper goodsMapper;
+
+    @Autowired
+    goodsImgMapper goodsImgMapper;
 
     @Autowired
     goodsClassificationMapper goodsClassificationMapper;
@@ -54,14 +59,8 @@ public class goodsServiceImpl implements goodsService {
 
     //保存添加商品
     @Override
-    public void save(goodsFenLei goodsFenLei) {
-        goodsFenLei.setGoodsName(goodsFenLei.getGoodsName());
-        goodsFenLei.setGoodsPrice(goodsFenLei.getGoodsPrice());
-        goodsFenLei.setGoodsStock(goodsFenLei.getGoodsStock());
-        goodsFenLei.setDetail(goodsFenLei.getDetail());
-        goodsFenLei.setCategoryId(goodsFenLei.getCategoryId());
-        goodsFenLei.setState(1);
-        goodsMapper.insert(goodsFenLei);
+    public Integer save(goods goods) {
+        return goodsMapper.insert(goods);
     }
 
     //查询单个商品信息（用于修改回显）
@@ -83,13 +82,19 @@ public class goodsServiceImpl implements goodsService {
     }
 
     //删除商品
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void deleteByGoods(Integer id) {
+    public Integer deleteByGoods(Integer id) {
         //创建查询条件
         Example example = new Example(goods.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("goodsId",id);
-        goodsMapper.deleteByExample(example);
+
+        int i = goodsImgMapper.deleteByExample(example);
+        if(i>0){
+            return goodsMapper.deleteByExample(example);
+        }
+        return null;
     }
 
 

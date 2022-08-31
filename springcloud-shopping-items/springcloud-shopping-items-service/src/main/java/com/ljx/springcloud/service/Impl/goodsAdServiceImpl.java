@@ -29,9 +29,11 @@ public class goodsAdServiceImpl implements goodsAdService {
         return goodsAd;
     }
 
-    //保存修改商品广告信息
+    //添加广告
     @Override
-    public void queryByUpdate(goodsAd goodsAd) {
-        goodsAdMapper.updateByPrimaryKeySelective(goodsAd);
+    public Integer queryByAddGoodsAd(goodsAd goodsAd) {
+        return goodsAdMapper.insert(goodsAd);
     }
+
+
 }

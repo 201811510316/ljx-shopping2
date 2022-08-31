@@ -34,15 +34,17 @@ public class goodsAdController {
         return ResponseEntity.ok(goodsAd);
     }
 
-    //保存修改商品广告信息
-    @PutMapping("/goods/update")
-    public ResponseEntity<Void> queryByUpdate(@RequestBody goodsAd goodsAd){
-        try {
-            goodsAdService.queryByUpdate(goodsAd);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //添加商品广告
+    @PostMapping("/goods/add")
+    public ResponseEntity<String> queryByAdd(@RequestBody goodsAd goodsAd){
+        goodsAd goodsAd1 = new goodsAd();
+        goodsAd1.setName(goodsAd.getName());
+        goodsAd1.setLink("null");
+        goodsAd1.setEnabled(1);
+        Integer integer = goodsAdService.queryByAddGoodsAd(goodsAd1);
+        if (integer!=null) {
+            return ResponseEntity.ok("添加成功");
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

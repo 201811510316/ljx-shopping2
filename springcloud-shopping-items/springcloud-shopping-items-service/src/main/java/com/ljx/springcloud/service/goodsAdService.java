@@ -10,5 +10,6 @@ public interface goodsAdService {
 
     goodsAd queryById(Integer id);
 
-    void queryByUpdate(goodsAd goodsAd);
+    //添加广告
+    Integer queryByAddGoodsAd(goodsAd goodsAd);
 }

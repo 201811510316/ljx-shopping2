@@ -14,10 +14,5 @@ public interface goodsImgService {
     //根据id查询对应商品详情图片
     goodsImg queryByGoodsImg(Integer id);
 
-    //保存商品图片修改的信息
-    void save(goodsImg goodsImg);
-
-    //保存添加图片
-    void goodsImgAdd(goodsImg goodsImg);
 
 }

@@ -1,16 +1,17 @@
 package com.ljx.springcloud.controller;
 
 import com.ljx.springcloud.pojo.goods;
-import com.ljx.springcloud.pojo.goodsClassification;
 import com.ljx.springcloud.service.Impl.goodsServiceImpl;
 import com.ljx.springcloud.service.categoryService;
-import com.ljx.springcloud.service.goodsService;
 import com.ljx.springcloud.utils.PageResult;
 import com.ljx.springcloud.pojo.goodsFenLei;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+
 
 @RestController
 public class goodsController {
@@ -20,7 +21,6 @@ public class goodsController {
 
     @Autowired
     categoryService categoryService;
-
     /**
      *     商品goodsId,
      *     商品名称goodsName,
@@ -42,14 +42,23 @@ public class goodsController {
 
     //新增商品
     @PostMapping("/goods")
-    public ResponseEntity<Void> saveGoods(@RequestBody goodsFenLei goodsFenLei) {
-        try {
-            this.goodsService.save(goodsFenLei);
+    public ResponseEntity<Void> saveGoods(@RequestBody goods goods) {
+        goods goods1 = new goods();
+        goods1.setGoodsName(goods.getGoodsName());
+        goods1.setGoodsPrice(goods.getGoodsPrice());
+        goods1.setGoodsSales(0);
+        goods1.setGoodsStock(goods.getGoodsStock());
+        goods1.setDetail(goods.getDetail());
+        goods1.setCategoryId(goods.getCategoryId());
+        goods1.setDefaultSize(goods.getDefaultSize());
+        goods1.setState(1);
+        goods1.setGoodsHot(0);
+        goods1.setGoodsNew(1);
+        Integer save = goodsService.save(goods1);
+        if(save>0){
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     //查询单个商品信息（用于修改回显）
@@ -77,13 +86,11 @@ public class goodsController {
     //删除商品
     @DeleteMapping("/spu/delete")
     public ResponseEntity<Void> deleteByGoods(@RequestParam("id")Integer id){
-        try {
-            goodsService.deleteByGoods(id);
+        Integer integer = goodsService.deleteByGoods(id);
+        if(integer!=null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

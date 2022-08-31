@@ -33,7 +33,7 @@ public class goods {
     //商品规格
     private Integer defaultSize;
 
-    //商品状态(0为下架,1为上架中,2为新品)
+    //商品状态(0为下架,1为上架中)
     private Integer state;
 
     //商品主要图片

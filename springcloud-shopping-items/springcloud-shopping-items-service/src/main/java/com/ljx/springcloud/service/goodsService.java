@@ -10,7 +10,7 @@ public interface goodsService {
     PageResult<goodsFenLei> queryByGoods(Integer page, Integer rows, Integer saleable);
 
     //保存商品
-    void save(goodsFenLei goodsFenLei);
+    Integer save(goods goods);
 
     //查询单个商品信息（用于修改回显）
     goodsFenLei queryGoodsById(Integer id);
@@ -19,5 +19,5 @@ public interface goodsService {
     void update(goods goods);
 
     //删除商品
-    void deleteByGoods(Integer id);
+    Integer deleteByGoods(Integer id);
 }
