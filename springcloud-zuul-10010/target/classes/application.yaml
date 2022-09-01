@@ -27,8 +27,8 @@ zuul:
   routes:
     springcloud-shopping-items-service: /item/**  #将商品微服务映射到/item/**
     order-service: /trade/**                      #将订单微服务映射到/trade/**
-#    upload-service: /upload/**
-    upload-service: /**
+    upload-service: /upload/**
+#    upload-service: /**
     user-service: /user/**
     auth-service: /auth/**
   add-host-header: true
@@ -50,3 +50,6 @@ ly:
     allowPaths:
       - /api/user
       - /api/auth
+#      - /api/item
+#      - /api/trade
+#      - /api/upload

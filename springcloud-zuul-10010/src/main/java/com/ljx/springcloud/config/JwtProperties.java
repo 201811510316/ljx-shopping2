@@ -24,7 +24,7 @@ public class JwtProperties {
     @PostConstruct
     public void init(){
         try {
-            PublicKey publicKey = RsaUtils.getPublicKey(pubKeyPath);
+            this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
         } catch (Exception e) {
             throw new RuntimeException();
         }

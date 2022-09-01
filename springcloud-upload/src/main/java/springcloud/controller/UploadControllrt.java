@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 //对商品图片进行增删改
 @RestController
-@RequestMapping("upload")
+//@RequestMapping("upload")
 public class UploadControllrt {
 
     @Autowired

@@ -41,7 +41,7 @@ public class springbootTest {
 
     @Test
     public void testParseToken() throws Exception {
-        String token = "eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTY2MjAxNDkzMX0.MmiIYC5otp8JPJGAoemq7BXF7SM15p2np6CUOha6umF7R2O4v-QVNA00LyWvyN76ekGbwhZw8VaD9WXrNlUBv4LD5JZWjiwkkbmxPiKqORdfwyPbHFebOpDqRSSEEWf15jQqLnz3WwRMa7FyDBeybtcXnzPl2sQmDWsB40LL6vA";
+        String token = "eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTY2MjAyMDEzMn0.fU-aiFWPJj8ZgKrbJKhrh5hddfX3pTkbJ1hSVAM_3466qf-upk9J9Ij_JE8mw0AvVH-rsex_a5yHUiWwHHyUqOzZDNRA2ljMVw9dEgfoEvQ2muZNVEBsOK9GxzoTehpz1U_sbkJFovjylZ_l7v72-v4SvgcdRLunSR5HY28h8z4";
 
         // 解析token
         UserInfo user = JwtUtils.getInfoFromToken(token, publicKey);
