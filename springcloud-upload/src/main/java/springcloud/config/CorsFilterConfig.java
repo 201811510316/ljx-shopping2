@@ -17,7 +17,7 @@ public class CorsFilterConfig {
         config.addAllowedOrigin("http://localhost:10010");
         config.addAllowedOrigin("http://localhost:9001");
         //2) 是否发送Cookie信息
-        config.setAllowCredentials(false);
+        config.setAllowCredentials(true);
         //3) 允许的请求方式
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("POST");

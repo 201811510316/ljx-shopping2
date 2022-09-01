@@ -29,6 +29,10 @@ zuul:
     order-service: /trade/**                      #将订单微服务映射到/trade/**
 #    upload-service: /upload/**
     upload-service: /**
+    user-service: /user/**
+    auth-service: /auth/**
+  add-host-header: true
+  sensitive-headers:
 
 hystrix:
   command:
@@ -37,3 +41,12 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 5000 # 熔断超时时长：10000ms
+#给token解密的公钥地址和cookie的名称
+ly:
+  jwt:
+    pubKeyPath: D:\IDEA_springcloud_file\rsa\rsa.pub
+    cookieName: LY_TOKEN
+  filter:
+    allowPaths:
+      - /api/user
+      - /api/auth

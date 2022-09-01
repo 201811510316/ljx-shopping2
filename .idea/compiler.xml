@@ -7,13 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springcloud-zuul-10010" />
+        <module name="springcloud-user-dao" />
+        <module name="springcloud-auth-common" />
         <module name="springcloud-upload" />
-        <module name="springcloud-user" />
         <module name="springcloud-shopping-items-service" />
         <module name="springcloud-order-Dao" />
         <module name="springcloud-eureka-7001" />
+        <module name="springcloud-auth-service" />
         <module name="springcloud-common" />
         <module name="springcloud-shopping-order-service" />
+        <module name="springcloud-user-service" />
         <module name="springcloud-shopping-items-Dao" />
       </profile>
     </annotationProcessing>

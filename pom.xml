@@ -15,6 +15,7 @@
         <module>springcloud-upload</module>
         <module>springcloud-order</module>
         <module>springcloud-user</module>
+        <module>springcloud-center</module>
     </modules>
     <packaging>pom</packaging>
 

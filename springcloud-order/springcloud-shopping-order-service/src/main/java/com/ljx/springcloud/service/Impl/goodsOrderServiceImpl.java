@@ -31,7 +31,7 @@ public class goodsOrderServiceImpl implements goodsOrderService {
         PageHelper.startPage(page,rows);
         Page<goodsOrder> goodsOrders = (Page<goodsOrder>) goodsOrderMapper.selectAll();
         List<goodsOrder> result = goodsOrders.getResult();
-        return new PageResult<>(goodsOrders.getTotal(),result);
+        return new PageResult<>(goodsOrders.getTotal(),goodsOrders.getPages(),result);
     }
 
     //根据已支付的订单，来为订单发货（修改订单状态）
@@ -70,6 +70,6 @@ public class goodsOrderServiceImpl implements goodsOrderService {
         criteria.andEqualTo("orderNo",id);
         Page<orderItem> orderItems = (Page<orderItem>) orderItemMapper.selectByExample(example);
         List<orderItem> result = orderItems.getResult();
-        return new PageResult<>(orderItems.getTotal(),result);
+        return new PageResult<>(orderItems.getTotal(),orderItems.getPages(),result);
     }
 }
