@@ -54,7 +54,7 @@ public class goodsServiceImpl implements goodsService {
             return goodsFenLei;
         }).collect(Collectors.toList());
 
-       return new PageResult<>(pageInfo.getTotal(),goodsFenLeis);
+       return new PageResult<>(pageInfo.getTotal(),pageInfo.getPages(),goodsFenLeis);
     }
 
     //保存添加商品

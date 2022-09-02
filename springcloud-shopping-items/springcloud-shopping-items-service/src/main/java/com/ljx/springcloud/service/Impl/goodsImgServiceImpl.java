@@ -42,7 +42,7 @@ public class goodsImgServiceImpl implements goodsImgService {
             return goodsTupian;
         }).collect(Collectors.toList());
 
-        return new PageResult<>(goodsImgs.getTotal(),goodsTupians);
+        return new PageResult<>(goodsImgs.getTotal(),goodsImgs.getPages(),goodsTupians);
     }
 
     //根据id查询对应商品详情图片
