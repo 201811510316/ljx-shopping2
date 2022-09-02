@@ -1,6 +1,5 @@
 package com.ljx.springcloud.pojo;
 
-import java.util.Objects;
 //统计支付商品的数量
 public class goodsSum{
     private Integer goodsId;

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.ljx.springcloud.mapper.goodsClassificationMapper;
 import com.ljx.springcloud.mapper.goodsImgMapper;
 import com.ljx.springcloud.mapper.goodsMapper;
+import com.ljx.springcloud.mapper.goodsRemarkMapper;
 import com.ljx.springcloud.pojo.goods;
 import com.ljx.springcloud.pojo.goodsClassification;
 import com.ljx.springcloud.service.goodsService;
@@ -27,6 +28,9 @@ public class goodsServiceImpl implements goodsService {
 
     @Autowired
     goodsImgMapper goodsImgMapper;
+
+    @Autowired
+    goodsRemarkMapper goodsRemarkMapper;
 
     @Autowired
     goodsClassificationMapper goodsClassificationMapper;
@@ -90,9 +94,11 @@ public class goodsServiceImpl implements goodsService {
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("goodsId",id);
 
-        int i = goodsImgMapper.deleteByExample(example);
+        int i = goodsMapper.deleteByExample(example);
         if(i>0){
-            return goodsMapper.deleteByExample(example);
+            goodsImgMapper.deleteByExample(example);
+            goodsRemarkMapper.deleteByExample(example);
+            return 1;
         }
         return null;
     }

@@ -1,19 +1,17 @@
 package com.ljx.springcloud.pojo;
-
+/**
+ *     展示商品列表
+ *     商品goodsId,
+ *     商品名称goodsName,
+ *     商品描述detail,
+ *     商品库存goodsStock,
+ *     商品分类名称categoryName,
+ *     商品状态state
+ */
 public class goodsFenLei extends goods{
-    //展示商品列表
-    // 商品
-//    private Integer id;
-    //商品名称
-//    private String goodsName;
-    //商品描述
-//    private String detail;
-    //商品库存
-//    private Integer goodsStock;
+
     //商品分类名称
     private String categoryName;
-    //商品状态
-//    private Integer state;
 
     public goodsFenLei() {
     }

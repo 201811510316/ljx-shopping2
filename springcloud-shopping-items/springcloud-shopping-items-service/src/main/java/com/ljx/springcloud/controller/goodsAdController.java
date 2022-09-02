@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//商品广告信息管理
 @RestController
 public class goodsAdController {
     @Autowired

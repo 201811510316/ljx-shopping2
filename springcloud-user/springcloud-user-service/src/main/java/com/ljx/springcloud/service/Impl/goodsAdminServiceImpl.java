@@ -19,7 +19,6 @@ public class goodsAdminServiceImpl implements goodsAdminService {
         Example example = new Example(goodsAdmin.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username",username).andEqualTo("password",password);
-
         goodsAdmin goodsAdmin = goodsAdminMapper.selectOneByExample(example);
         if(goodsAdmin!=null){
             return goodsAdmin;

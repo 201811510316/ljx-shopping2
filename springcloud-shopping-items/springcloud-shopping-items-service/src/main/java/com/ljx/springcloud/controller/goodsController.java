@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-
-
+//对商品信息管理
 @RestController
 public class goodsController {
 
@@ -21,18 +19,12 @@ public class goodsController {
 
     @Autowired
     categoryService categoryService;
-    /**
-     *     商品goodsId,
-     *     商品名称goodsName,
-     *     商品描述detail,
-     *     商品库存goodsStock,
-     *     商品分类名称categoryName,
-     *     商品状态state
-     */
 
     //展示商品列表
     @GetMapping("/spu/page")
-    public ResponseEntity<PageResult<goodsFenLei>> queryGoodsByPage(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "rows",defaultValue = "4") Integer rows, @RequestParam(value = "saleable",defaultValue = "1") Integer saleable){
+    public ResponseEntity<PageResult<goodsFenLei>> queryGoodsByPage(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                                                    @RequestParam(value = "rows",defaultValue = "4") Integer rows,
+                                                                    @RequestParam(value = "saleable",defaultValue = "1") Integer saleable){
         PageResult<goodsFenLei> result = goodsService.queryByGoods(page, rows, saleable);
         if(result !=null){
             return ResponseEntity.ok(result);
@@ -41,7 +33,7 @@ public class goodsController {
     }
 
     //新增商品
-    @PostMapping("/goods")
+    @PostMapping("/spu/add")
     public ResponseEntity<Void> saveGoods(@RequestBody goods goods) {
         goods goods1 = new goods();
         goods1.setGoodsName(goods.getGoodsName());
@@ -62,7 +54,7 @@ public class goodsController {
     }
 
     //查询单个商品信息（用于修改回显）
-    @GetMapping("/spu/list")
+    @GetMapping("/spu/goodsid")
     public ResponseEntity<goodsFenLei> querySpuDetailById(@RequestParam("id")Integer id){
         goodsFenLei goodsFenLei = goodsService.queryGoodsById(id);
         if(goodsFenLei==null){
@@ -72,7 +64,7 @@ public class goodsController {
     }
 
     //保存修改商品信息
-    @PutMapping
+    @PutMapping("/spu/update")
     public ResponseEntity<Void> updateGoods(@RequestBody goods goods) {
         try {
             goodsService.update(goods);
