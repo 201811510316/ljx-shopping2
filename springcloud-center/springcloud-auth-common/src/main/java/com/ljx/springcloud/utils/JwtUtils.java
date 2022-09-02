@@ -10,15 +10,18 @@ import org.joda.time.DateTime;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-//创建token，并使用密钥进行加密和解密
+//创建token，并使用密钥进行加密，公钥进行解密
 public class JwtUtils {
 
-    //私钥加密
+    //创建token，使用私钥进行加密
     public static String generateToken(UserInfo userInfo, PrivateKey privateKey,int expireMinutes)throws Exception{
         return Jwts.builder()
+                //把用户信息加入到载荷中
                 .claim(JwtConstans.JWT_KEY_ID,userInfo.getId())
                 .claim(JwtConstans.JWT_KEY_USER_NAME,userInfo.getUsername())
+                //设置token的过期时间
                 .setExpiration(DateTime.now().plusMinutes(expireMinutes).toDate())
+                //
                 .signWith(SignatureAlgorithm.RS256,privateKey)
                 .compact();
     }

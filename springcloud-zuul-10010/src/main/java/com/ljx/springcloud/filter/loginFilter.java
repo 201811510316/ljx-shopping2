@@ -39,6 +39,7 @@ public class loginFilter extends ZuulFilter {
         return 5;
     }
 
+    //拦截哪些不在白名单上请求路径
     @Override
     public boolean shouldFilter() {
         //获取上下文
@@ -63,7 +64,7 @@ public class loginFilter extends ZuulFilter {
         return flag;
     }
 
-    //拦截规则
+    //对那些不在白名单的请求路径进行拦截校验，校验通过则放行，不通过则拦截
     @Override
     public Object run() throws ZuulException {
         //获取上下文

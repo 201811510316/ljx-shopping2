@@ -1,8 +1,11 @@
 package com.ljx.springcloud.service;
 
 import com.ljx.springcloud.pojo.goodsOrder;
+import com.ljx.springcloud.pojo.goodsSum;
 import com.ljx.springcloud.pojo.orderItem;
 import com.ljx.springcloud.utils.PageResult;
+
+import java.util.List;
 
 public interface goodsOrderService {
 
@@ -17,5 +20,11 @@ public interface goodsOrderService {
 
     //查看每个订单的详情商品信息
     PageResult<orderItem> queryByOrderItems(Integer page, Integer rows,String id);
+
+    //统计已支付的商品总数量
+    List<goodsSum> queryByGoodsCount();
+
+    //统计所有已支付订单的总价格
+    Integer queryByGoodsSum();
 
 }

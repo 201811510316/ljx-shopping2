@@ -27,10 +27,12 @@ public class AuthController {
     //登录授权
     @PostMapping("/accredit")
     public ResponseEntity<Void> aunthentication(@RequestParam("username")String username, @RequestParam("password")String password, HttpServletRequest request, HttpServletResponse response){
+        //登录成功后，生成token
         String token = authService.authentication(username, password);
         if(StringUtils.isBlank(token)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+        //将token值添加到cookie中
         cookieUtils.setCookie(request,response,jwtProperties.getCookieName(),token,jwtProperties.getCookieMaxAge(),null,true);
         return ResponseEntity.ok().build();
     }

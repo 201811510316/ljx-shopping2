@@ -1,6 +1,6 @@
 package com.ljx.springcloud.entiy;
 
-//封装token的载荷内容
+//token的载荷内容
 public class UserInfo {
 
     private Integer id;

@@ -8,7 +8,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- * 创建公钥与密钥，然后对token进行加密与解密
+ * 创建公钥与私钥的存储地址和读取方法
  */
 public class RsaUtils {
 
@@ -25,7 +25,7 @@ public class RsaUtils {
     }
 
     /**
-     * 从文件中读取密钥
+     * 从文件中读取私钥
      *
      * @param filename 私钥保存路径，相对于classpath
      * @return 私钥对象
@@ -50,7 +50,7 @@ public class RsaUtils {
     }
 
     /**
-     * 获取密钥
+     * 获取私钥
      *
      * @param bytes 私钥的字节形式
      * @return
@@ -84,10 +84,22 @@ public class RsaUtils {
         writeFile(privateKeyFilename, privateKeyBytes);
     }
 
+    /**
+     *  读取文件
+     * @param fileName
+     * @return
+     * @throws Exception
+     */
     private static byte[] readFile(String fileName) throws Exception {
         return Files.readAllBytes(new File(fileName).toPath());
     }
 
+    /**
+     *  写入文件
+     * @param destPath
+     * @param bytes
+     * @throws IOException
+     */
     private static void writeFile(String destPath, byte[] bytes) throws IOException {
         File dest = new File(destPath);
         if (!dest.exists()) {

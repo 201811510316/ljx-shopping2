@@ -2,6 +2,7 @@ package com.ljx.springcloud.controller;
 
 
 import com.ljx.springcloud.pojo.goodsOrder;
+import com.ljx.springcloud.pojo.goodsSum;
 import com.ljx.springcloud.pojo.orderItem;
 import com.ljx.springcloud.service.goodsOrderService;
 import com.ljx.springcloud.utils.PageResult;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class orderController {
 
@@ -21,7 +24,8 @@ public class orderController {
 
     //查看全部订单信息
     @GetMapping("/order/all")
-    public ResponseEntity<PageResult<goodsOrder>> queryByOrderAll(@RequestParam(value = "page",defaultValue = "1")Integer page,@RequestParam(value = "rows",defaultValue = "4")Integer rows){
+    public ResponseEntity<PageResult<goodsOrder>> queryByOrderAll(@RequestParam(value = "page",defaultValue = "1")Integer page,
+                                                                  @RequestParam(value = "rows",defaultValue = "4")Integer rows){
         PageResult<goodsOrder> result = goodsOrderService.queryByGoodsOrders(page, rows);
         if(result==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,7 +57,9 @@ public class orderController {
 
     //查看每个订单的详情商品信息
     @GetMapping("/order/goods")
-    public ResponseEntity<PageResult<orderItem>> queryByGoods(@RequestParam(value = "page",defaultValue = "1")Integer page,@RequestParam(value = "rows",defaultValue = "4")Integer rows,@RequestParam("id")String id){
+    public ResponseEntity<PageResult<orderItem>> queryByGoods(@RequestParam(value = "page",defaultValue = "1")Integer page,
+                                                              @RequestParam(value = "rows",defaultValue = "4")Integer rows,
+                                                              @RequestParam("id")String id){
         PageResult<orderItem> result = goodsOrderService.queryByOrderItems(page, rows, id);
         if(result==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -61,5 +67,21 @@ public class orderController {
         return ResponseEntity.ok(result);
     }
 
+    //统计已支付订单的所有商品数量
+    @GetMapping("/order/count")
+    public ResponseEntity<List<goodsSum>> queryByCount(){
+        List<goodsSum> goodsSums = goodsOrderService.queryByGoodsCount();
+        if(!goodsSums.isEmpty()){
+            return ResponseEntity.ok(goodsSums);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    //统计所有已支付订单的总价格
+    @GetMapping("/order/price")
+    public ResponseEntity<Integer> queryByPrice(){
+        Integer integer = goodsOrderService.queryByGoodsSum();
+        return ResponseEntity.ok(integer);
+    }
 
 }
