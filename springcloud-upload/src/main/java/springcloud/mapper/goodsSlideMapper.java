@@ -1,9 +1,9 @@
 package springcloud.mapper;
 
 
-import com.ljx.springcloud.pojo.goodsAd;
+import com.ljx.springcloud.pojo.goodsSlide;
 import tk.mybatis.mapper.common.Mapper;
 
 @org.apache.ibatis.annotations.Mapper
-public interface goodsAdMapper extends Mapper<goodsAd> {
+public interface goodsSlideMapper extends Mapper<goodsSlide> {
 }
