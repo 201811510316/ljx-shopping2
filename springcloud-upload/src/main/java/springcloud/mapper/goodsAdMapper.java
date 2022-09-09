@@ -1,6 +1,5 @@
 package springcloud.mapper;
 
-
 import com.ljx.springcloud.pojo.goodsAd;
 import tk.mybatis.mapper.common.Mapper;
 

@@ -35,11 +35,5 @@ public class goodsAdServiceImpl implements goodsAdService {
         return goodsAdMapper.insert(goodsAd);
     }
 
-    //删除商品广告
-    @Override
-    public Integer queryByGoodsAdDelete(Integer id) {
-        return goodsAdMapper.deleteByPrimaryKey(id);
-    }
-
 
 }

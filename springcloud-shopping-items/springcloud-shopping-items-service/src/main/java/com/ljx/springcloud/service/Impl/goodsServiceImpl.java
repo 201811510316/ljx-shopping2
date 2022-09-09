@@ -2,7 +2,10 @@ package com.ljx.springcloud.service.Impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.ljx.springcloud.mapper.*;
+import com.ljx.springcloud.mapper.goodsClassificationMapper;
+import com.ljx.springcloud.mapper.goodsImgMapper;
+import com.ljx.springcloud.mapper.goodsMapper;
+import com.ljx.springcloud.mapper.goodsRemarkMapper;
 import com.ljx.springcloud.pojo.goods;
 import com.ljx.springcloud.pojo.goodsClassification;
 import com.ljx.springcloud.service.goodsService;
@@ -10,10 +13,8 @@ import com.ljx.springcloud.utils.PageResult;
 import com.ljx.springcloud.pojo.goodsFenLei;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -27,9 +28,6 @@ public class goodsServiceImpl implements goodsService {
 
     @Autowired
     goodsImgMapper goodsImgMapper;
-
-    @Autowired
-    goodsSlideMapper goodsSlideMapper;
 
     @Autowired
     goodsRemarkMapper goodsRemarkMapper;
@@ -66,37 +64,19 @@ public class goodsServiceImpl implements goodsService {
     //保存添加商品
     @Override
     public Integer save(goods goods) {
-        goods goods1 = new goods();
-        goods1.setGoodsName(goods.getGoodsName());
-        goods1.setGoodsPrice(goods.getGoodsPrice());
-        goods1.setGoodsSales(0);
-        goods1.setGoodsStock(goods.getGoodsStock());
-        goods1.setDetail(goods.getDetail());
-        goods1.setCategoryId(goods.getCategoryId());
-        goods1.setDefaultSize(goods.getDefaultSize());
-        goods1.setState(1);
-        goods1.setGoodsHot(0);
-        goods1.setGoodsNew(1);
-        int insert = goodsMapper.insert(goods1);
-        return insert;
+        return goodsMapper.insert(goods);
     }
 
     //查询单个商品信息（用于修改回显）
-//    @Override
-//    public goodsFenLei queryGoodsById(Integer id) {
-//        goods goods = goodsMapper.selectByPrimaryKey(id);
-//        goodsFenLei goodsFenLei = new goodsFenLei();
-//        //把goods转变为goodsFenLei -- 属性拷贝
-//        BeanUtils.copyProperties(goods, goodsFenLei);
-//        goodsClassification key = goodsClassificationMapper.selectByPrimaryKey(goods.getCategoryId());
-//        goodsFenLei.setCategoryName(key.getCategoryName());
-//        return goodsFenLei;
-//    }
-
-    //查询单个商品信息（用于修改回显）
     @Override
-    public goods queryGoodsById(Integer id) {
-        return goodsMapper.selectByPrimaryKey(id);
+    public goodsFenLei queryGoodsById(Integer id) {
+        goods goods = goodsMapper.selectByPrimaryKey(id);
+        goodsFenLei goodsFenLei = new goodsFenLei();
+        //把goods转变为goodsFenLei -- 属性拷贝
+        BeanUtils.copyProperties(goods, goodsFenLei);
+        goodsClassification key = goodsClassificationMapper.selectByPrimaryKey(goods.getCategoryId());
+        goodsFenLei.setCategoryName(key.getCategoryName());
+        return goodsFenLei;
     }
 
     //保存修改商品信息
@@ -118,7 +98,6 @@ public class goodsServiceImpl implements goodsService {
         if(i>0){
             goodsImgMapper.deleteByExample(example);
             goodsRemarkMapper.deleteByExample(example);
-            goodsSlideMapper.deleteByExample(example);
             return 1;
         }
         return null;

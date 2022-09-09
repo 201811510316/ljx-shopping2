@@ -2,17 +2,14 @@ package com.ljx.springcloud.service.Impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.ljx.springcloud.client.goodsApiOrder;
 import com.ljx.springcloud.mapper.goodsOrderMapper;
 import com.ljx.springcloud.mapper.orderItemMapper;
-import com.ljx.springcloud.pojo.goods;
 import com.ljx.springcloud.pojo.goodsOrder;
 import com.ljx.springcloud.pojo.goodsSum;
 import com.ljx.springcloud.pojo.orderItem;
 import com.ljx.springcloud.service.goodsOrderService;
 import com.ljx.springcloud.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -27,8 +24,6 @@ public class goodsOrderServiceImpl implements goodsOrderService {
     @Autowired
     orderItemMapper orderItemMapper;
 
-    @Autowired
-    goodsApiOrder goodsApiOrder;
 
     //查看全部订单信息
     @Override
@@ -50,19 +45,6 @@ public class goodsOrderServiceImpl implements goodsOrderService {
         if(goodsOrder.getPayStatus()==0){
             return false;
         }else{
-            //修改商品库存和销量
-            List<orderItem> orderItems = orderItemMapper.selectByExample(example);
-            for(orderItem orderItem:orderItems){
-//                goods goods = goodsMapper.selectByPrimaryKey(orderItem.getGoodsId());
-                ResponseEntity<goods> goodsResponseEntity = goodsApiOrder.querySpuDetailById(orderItem.getGoodsId());
-                goods goods = goodsResponseEntity.getBody();
-                int stock=goods.getGoodsStock()-orderItem.getCount();
-                goods.setGoodsStock(stock);
-                int sales=goods.getGoodsSales()+orderItem.getCount();
-                goods.setGoodsSales(sales);
-                goodsApiOrder.updateGoods(goods);
-            }
-            //添加订单发货状态和发货时间
             goodsOrder.setOrderState(1);
             goodsOrder.setUpdateTime(new Date());
             goodsOrderMapper.updateByPrimaryKeySelective(goodsOrder);

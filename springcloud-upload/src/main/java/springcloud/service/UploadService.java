@@ -116,37 +116,4 @@ public class UploadService {
         }
     }
 
-    //轮播图片
-    public String uploadSlideJGP(MultipartFile file){
-        try{
-            //图片信息校验
-            //校验文件类型
-            String type = file.getContentType();
-            if(!suffixes.contains(type)){
-                logger.info("上传失败，文件类型不匹配：{}",type);
-                return null;
-            }
-            //校验图片内容
-            BufferedImage image = ImageIO.read(file.getInputStream());
-            if(image==null){
-                logger.info("上传失败，文件内容不符合要求！！！");
-                return null;
-            }
-            //保存图片
-            //生成保存目录
-//            File dir = new File("D:\\IDEA_springcloud_file\\upload");
-            File dir = new File("D:\\IDEA_file\\goods2-shopping\\src\\main\\resources\\static\\img\\b_img");
-            if(!dir.exists()){
-                dir.mkdirs();
-            }
-            //保存图片
-            file.transferTo(new File(dir,file.getOriginalFilename()));
-            //拼接图片地址
-            String url = "http://192.168.70.246:8080/img/b_img/"+file.getOriginalFilename();
-            return url;
-        }catch (Exception e){
-            return null;
-        }
-    }
-
 }

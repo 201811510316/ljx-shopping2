@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 //商品详情图片查看
 @RestController
 public class goodsImgController {
@@ -17,7 +15,7 @@ public class goodsImgController {
     @Autowired
     goodsImgService goodsImgService;
 
-    //查看商品的详情图片 -- 没必要
+    //查看商品的详情图片
     @GetMapping("/goods/tupian")
     public ResponseEntity<PageResult<goodsTupian>> queryByGoodsTupian(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                                                       @RequestParam(value = "rows",defaultValue = "4")Integer rows){
@@ -33,8 +31,7 @@ public class goodsImgController {
     public ResponseEntity<goodsImg> queryByGoodsImg(@RequestParam("id")Integer id){
         goodsImg goodsImg = goodsImgService.queryByGoodsImg(id);
         if(goodsImg==null){
-            goodsImg goodsImg1 = new goodsImg();
-            return ResponseEntity.ok(goodsImg1);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(goodsImg);
     }
