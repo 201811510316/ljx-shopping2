@@ -26,7 +26,7 @@ public class goodsImgServiceImpl implements goodsImgService {
     @Autowired
     goodsMapper goodsMapper;
 
-    //查询商品详情图片
+    //查询商品详情图片  -- 没必要
     @Override
     public PageResult<goodsTupian> qureyByGoodsTupian(Integer page, Integer rows) {
         //开始分页

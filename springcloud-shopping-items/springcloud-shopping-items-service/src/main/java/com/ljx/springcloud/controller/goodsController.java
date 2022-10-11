@@ -35,18 +35,7 @@ public class goodsController {
     //新增商品
     @PostMapping("/spu/add")
     public ResponseEntity<Void> saveGoods(@RequestBody goods goods) {
-        goods goods1 = new goods();
-        goods1.setGoodsName(goods.getGoodsName());
-        goods1.setGoodsPrice(goods.getGoodsPrice());
-        goods1.setGoodsSales(0);
-        goods1.setGoodsStock(goods.getGoodsStock());
-        goods1.setDetail(goods.getDetail());
-        goods1.setCategoryId(goods.getCategoryId());
-        goods1.setDefaultSize(goods.getDefaultSize());
-        goods1.setState(1);
-        goods1.setGoodsHot(0);
-        goods1.setGoodsNew(1);
-        Integer save = goodsService.save(goods1);
+        Integer save = goodsService.save(goods);
         if(save>0){
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
@@ -55,12 +44,12 @@ public class goodsController {
 
     //查询单个商品信息（用于修改回显）
     @GetMapping("/spu/goodsid")
-    public ResponseEntity<goodsFenLei> querySpuDetailById(@RequestParam("id")Integer id){
-        goodsFenLei goodsFenLei = goodsService.queryGoodsById(id);
-        if(goodsFenLei==null){
+    public ResponseEntity<goods> querySpuDetailById(@RequestParam("id")Integer id){
+        goods goods = goodsService.queryGoodsById(id);
+        if(goods==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(goodsFenLei);
+        return ResponseEntity.ok(goods);
     }
 
     //保存修改商品信息

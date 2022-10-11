@@ -24,7 +24,7 @@ public class goodsAdController {
         return ResponseEntity.ok(goodsAds);
     }
 
-    //修改商品广告(回显商品信息)
+    //查看商品广告
     @GetMapping("/goods/goodsAdId")
     public ResponseEntity<goodsAd> queryById(@RequestParam("id")Integer id){
         goodsAd goodsAd = goodsAdService.queryById(id);
@@ -40,10 +40,19 @@ public class goodsAdController {
         goodsAd goodsAd1 = new goodsAd();
         goodsAd1.setName(goodsAd.getName());
         goodsAd1.setLink("null");
-        goodsAd1.setEnabled(1);
+        goodsAd1.setEnabled(goodsAd.getEnabled());
         Integer integer = goodsAdService.queryByAddGoodsAd(goodsAd1);
         if (integer!=null) {
             return ResponseEntity.ok("添加成功");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    //删除商品广告
+    @DeleteMapping("/goods/delete")
+    public ResponseEntity<String> queryByDelete(@RequestParam("id")Integer id){
+        Integer integer = goodsAdService.queryByGoodsAdDelete(id);
+        if(integer>0){
+            return ResponseEntity.ok("删除成功");
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

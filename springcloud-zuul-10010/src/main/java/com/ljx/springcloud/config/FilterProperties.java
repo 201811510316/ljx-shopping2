@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+//对哪些请求路径进行放行，不拦截（白名单）
 @Component
 @ConfigurationProperties(prefix = "ly.filter")
 public class FilterProperties {

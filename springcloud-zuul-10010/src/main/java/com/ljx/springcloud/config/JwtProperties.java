@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.security.PublicKey;
 
+//配置公钥地址和cookie的name
 @Component
 @ConfigurationProperties(prefix = "ly.jwt")
 public class JwtProperties {

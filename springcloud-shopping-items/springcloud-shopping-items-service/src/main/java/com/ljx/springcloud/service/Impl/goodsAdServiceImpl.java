@@ -36,4 +36,9 @@ public class goodsAdServiceImpl implements goodsAdService {
     }
 
 
+    //删除商品广告
+    @Override
+    public Integer queryByGoodsAdDelete(Integer id) {
+        return goodsAdMapper.deleteByPrimaryKey(id);
+    }
 }

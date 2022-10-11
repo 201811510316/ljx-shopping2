@@ -13,7 +13,7 @@ public interface goodsService {
     Integer save(goods goods);
 
     //查询单个商品信息（用于修改回显）
-    goodsFenLei queryGoodsById(Integer id);
+    goods queryGoodsById(Integer id);
 
     //保存修改商品信息
     void update(goods goods);

@@ -35,10 +35,10 @@ public class orderController {
 
     //根据已支付的订单，来为订单发货（修改订单状态）
     @GetMapping("/order/orderId")
-    public ResponseEntity<Boolean> queryByOrderId(@RequestParam("id")String id){
+    public ResponseEntity<String> queryByOrderId(@RequestParam("id")String id){
         Boolean aBoolean = goodsOrderService.queryByGoodsOrderUpdate(id);
         if(aBoolean){
-            return ResponseEntity.ok(aBoolean);
+            return ResponseEntity.ok("订单处理完毕-已发货");
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
